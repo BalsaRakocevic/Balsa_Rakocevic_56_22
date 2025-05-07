@@ -8,6 +8,7 @@ import java.util.List;
 
 @Path("/")
 @RegisterRestClient(configKey = "nager-date-api")
+
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface NagerApiClient {
