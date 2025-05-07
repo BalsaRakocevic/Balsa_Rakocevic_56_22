@@ -16,36 +16,35 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 
 
 
 @Entity
-@NamedQueries({ @NamedQuery(name = User.GET_ALL_USERS, query = "Select u from User u"),
-@NamedQuery(name = User.GET_USERS_BY_NAME, query = "Select u from User u where u.username = :name") })
-public class User {
+@Table(name = "app_user")
+@NamedQueries({ @NamedQuery(name = AppUser.GET_ALL_USERS, query = "Select u from AppUser u"),
+@NamedQuery(name = AppUser.GET_USERS_BY_NAME, query = "Select u from AppUser u where u.username = :name") })
+public class AppUser {
 
 
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 	public static final String GET_ALL_USERS = "getAllUsers";
 	public static final String GET_USERS_BY_NAME = "getUsersByName";
 
-	
- 
-
     private String username;
     private String email;
     private String password;
 
-    public User() {
+    public AppUser() {
         super();
     }
 
-    public User(String username, String email, String password) {
+    public AppUser(String username, String email, String password) {
         super();
         this.username = username;
         this.email = email;
@@ -134,7 +133,7 @@ public void setProducts(Set<Product> products) {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        AppUser other = (AppUser) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

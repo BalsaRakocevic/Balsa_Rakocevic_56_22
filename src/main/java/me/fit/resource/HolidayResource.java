@@ -19,14 +19,14 @@ public class HolidayResource {
     @Inject
     HolidayService holidayService;
 
-    // Testiranje AvailableCountries
+ 
     @GET
     @Path("/available-countries")
     public List<CountryDto> getAvailableCountries() {
         return holidayService.getCountries();
     }
 
-    // Testiranje NextPublicHolidays/{countryCode}
+   
     @GET
     @Path("/next/{countryCode}")
     public Response getNextHolidays(@PathParam("countryCode") String countryCode) {

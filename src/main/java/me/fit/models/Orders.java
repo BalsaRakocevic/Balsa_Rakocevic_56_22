@@ -9,32 +9,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "orders")
 @NamedQueries({
-    @NamedQuery(name = Order.GET_ALL_FOR_USER, query = "Select o from Order o where o.user.id = :id")
+    @NamedQuery(name = Orders.GET_ALL_FOR_USER, query = "Select o from Orders o where o.user.id = :id")
 })
-public class Order {
+public class Orders {
 
     public static final String GET_ALL_FOR_USER = "getAllOrdersForUser";
 
 	public static final String GET_ALL = null;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_seq")
     public Long id;
 
     @ManyToOne
     @JsonIgnore
-    public User user;
+    public AppUser user;
 
     public String orderNumber;
 
-    public Order() {
+    public Orders() {
         super();
     }
 
-    public Order(Long id, String orderNumber, User user) {
+    public Orders(Long id, String orderNumber, AppUser user) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.user = user;
@@ -56,11 +58,11 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 }

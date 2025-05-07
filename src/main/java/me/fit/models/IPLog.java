@@ -19,13 +19,13 @@ public class IPLog {
     private Date createdDate;
 
     @ManyToOne
-    private User user;
+    private AppUser user;
 
     public IPLog() {
         super();
     }
 
-    public IPLog(String ipString, String ipType, Date createdDate, User user) {
+    public IPLog(String ipString, String ipType, Date createdDate, AppUser user) {
         super();
         this.ipString = ipString;
         this.ipType = ipType;
@@ -65,11 +65,11 @@ public class IPLog {
         this.createdDate = createdDate;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

@@ -26,7 +26,7 @@ public class Product {
 	private Category category;
 
 	@ManyToMany(mappedBy = "products")
-    public Set<User> users;
+    public Set<AppUser> users;
 
 	public Product() {
 	}
