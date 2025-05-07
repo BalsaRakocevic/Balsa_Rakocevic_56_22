@@ -29,16 +29,6 @@ public class UserProductResource {
     @Transactional
     public Response addUserWithProducts(AppUser user) {
 
-        if (user.getProducts() != null) {
-            
-            for (Product p : user.getProducts()) {
-                if (p.getProductID() == null) {
-                    em.persist(p);
-                } else {
-                    p = em.merge(p);
-                }
-            }
-        }
         em.persist(user);
         return Response.ok(user).build();
     }
@@ -46,6 +36,6 @@ public class UserProductResource {
     @GET
     @Path("/all")
     public List<AppUser> getAllUsers() {
-        return em.createQuery("SELECT u FROM User u", AppUser.class).getResultList();
+        return em.createQuery("SELECT u FROM AppUser u", AppUser.class).getResultList();
     }
 }

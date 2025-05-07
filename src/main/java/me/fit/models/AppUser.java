@@ -29,11 +29,13 @@ public class AppUser {
 
 
 
-	@Id
+	public static String getAllUsers;
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	public static final String GET_ALL_USERS = "getAllUsers";
+	public static final String GET_ALL_USERS = ".getAllUsers";
 	public static final String GET_USERS_BY_NAME = "getUsersByName";
 
     private String username;
