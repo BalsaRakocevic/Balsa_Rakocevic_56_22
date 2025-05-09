@@ -36,6 +36,6 @@ public class UserProductResource {
     @GET
     @Path("/all")
     public List<AppUser> getAllUsers() {
-        return em.createQuery("SELECT u FROM AppUser u", AppUser.class).getResultList();
+        return em.createNamedQuery(AppUser.GET_ALL_USERS, AppUser.class).getResultList();
     }
 }

@@ -35,7 +35,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	public static final String GET_ALL_USERS = ".getAllUsers";
+	public static final String GET_ALL_USERS = "getAllUsers";
 	public static final String GET_USERS_BY_NAME = "getUsersByName";
 
     private String username;
@@ -62,8 +62,8 @@ public class AppUser {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     @JoinTable(
         name = "User_Product", 
-        joinColumns = { @JoinColumn(name = "productid") }, 
-        inverseJoinColumns = { @JoinColumn(name = "userid") }
+        joinColumns = { @JoinColumn(name = "userid") }, 
+        inverseJoinColumns = { @JoinColumn(name = "productid") }
     )
  
     private Set<Product> products;
