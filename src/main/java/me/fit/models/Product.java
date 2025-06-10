@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Product {
@@ -25,8 +27,12 @@ public class Product {
     @JoinColumn(name = "categoryid")
 	private Category category;
 
-	@ManyToMany(mappedBy = "products")
-    public Set<AppUser> users;
+
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@JsonBackReference
+	private AppUser user;
 
 	public Product() {
 	}
