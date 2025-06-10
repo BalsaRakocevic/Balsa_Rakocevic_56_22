@@ -17,7 +17,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -41,6 +42,7 @@ public class AppUser {
     private String username;
     private String email;
     private String password;
+    private String filePath;
 
     public AppUser() {
         super();
@@ -59,13 +61,9 @@ public class AppUser {
 	@JsonIgnore
 	private IPLog ipLog;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY )
-    @JoinTable(
-        name = "User_Product", 
-        joinColumns = { @JoinColumn(name = "userid") }, 
-        inverseJoinColumns = { @JoinColumn(name = "productid") }
-    )
- 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Product> products;
 
 public Set<Product> getProducts() {
@@ -115,8 +113,13 @@ public void setProducts(Set<Product> products) {
 		this.ipLog = ipLog;
 	}
 
+    public String getFilePath() {
+        return filePath;
+    }
 
-
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public int hashCode() {

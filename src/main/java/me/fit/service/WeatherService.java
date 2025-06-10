@@ -5,7 +5,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
-@RegisterRestClient(baseUri = "https://goweather.xyz")
+@RegisterRestClient(baseUri = "https://goweather.xyz/api/v2")
 public interface WeatherService {
 
     @GET
